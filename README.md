@@ -24,7 +24,7 @@ Download the same album cover but from Deezer:
 
 Download cover from Ototoy
 
-`python cover-dl.py -o 882348'
+`python cover-dl.py -o 882348`
 
 
 The cover will be downloaded to the current directory from which the script is executing.
