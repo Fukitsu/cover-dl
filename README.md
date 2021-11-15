@@ -7,7 +7,7 @@ Python script to download album covert art from iTunes and Deezer in the highest
 - Requests library (install with `pip install requests`)
 
 ## Usage
-Need to pass album ID of either iTunes (default) or Deezer.
+Need to pass album ID of either iTunes (default), Ototoy or Deezer.
 
 Use the `-i` flag to download from iTunes or the `-d` flag to download from Deezer.
 
@@ -21,6 +21,11 @@ Download cover from album with ID 1576678718 (iTunes):
 Download the same album cover but from Deezer:
 
 `python cover.dl.py -d 244890522`
+
+Download cover from Ototoy
+
+`python cover-dl.py -o 882348'
+
 
 The cover will be downloaded to the current directory from which the script is executing.
 
