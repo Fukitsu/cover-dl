@@ -1,3 +1,4 @@
+import re
 import json
 import requests
 import argparse
@@ -17,16 +18,26 @@ def deezer(arg):
         f.write(requests.get(link.replace('1000x1000-000000-80-0-0.jpg', '1900x1900-000000-100-0-0.jpg')).content)
 
 
+def ototoy(arg):
+    r = requests.get(f'https://ototoy.jp/_/default/p/{arg}').text
+    link = re.search(r"<img alt=\"album jacket\" data-src=\"(.*?)\"/>", r).group(1)
+    with open(f'cover {arg}.jpg', 'wb') as f:
+        f.write(requests.get(link).content)
+
+
 def main():
     parser = argparse.ArgumentParser(description='Program to download album covers from iTunes and Deezer')
     parser.add_argument('id', metavar='id', nargs='+', help='The album ID or IDs')
     parser.add_argument('-i', '--itunes', help='Download cover from Itunes (default)', action='store_false')
     parser.add_argument('-d', '--deezer', help='Download cover from Deezer', action='store_true')
+    parser.add_argument('-o', '--ototoy', help='Download cover from Ototoy', action='store_true')
     args = parser.parse_args()
 
     for arg in args.id:
         if args.deezer:
             deezer(arg)
+        elif args.ototoy:
+            ototoy(arg)
         else:
             itunes(arg)
 
